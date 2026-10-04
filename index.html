@@ -26,9 +26,9 @@ h1{font-size:36px;letter-spacing:-1.5px;margin:10px 0 7px} .sub{margin:0;color:#
 .choice:hover{border-color:#5861df} .choice img{width:100%;height:260px;object-fit:contain;border-radius:10px;background:#f3f4f7}
 .choice-num{font-weight:900;margin:7px 0 2px;text-align:center}
 .actions{display:flex;gap:10px;margin-top:12px}
-button.main{height:52px;border:0;border-radius:14px;background:#5861df;color:#fff;font:800 16px inherit;flex:1;cursor:pointer}
+button.main{height:52px;border:0;border-radius:14px;background:#5861df;color:#fff;font:800 14px inherit;flex:1;cursor:pointer}
 button.next{background:#202331}
-.feedback{display:none;margin-top:14px;border-radius:14px;padding:14px;line-height:1.5;font-size:15px}
+.feedback{display:none;margin:0 0 12px;border-radius:14px;padding:16px;line-height:1.5;font-size:18px;font-weight:800;text-align:center}
 .feedback.show{display:block} .ok{background:#eaf8f0;color:#21885a} .bad{background:#fff0f2;color:#c94758}
 .hidden{display:none!important}
 .result{text-align:center;padding:25px 4px} .score{font-size:54px;font-weight:900;color:#5861df;margin:10px 0}
@@ -89,7 +89,8 @@ function renderImageToWord(q){
  quiz.innerHTML=`<p class="question">이 수어는 무슨 뜻일까요?</p>
  <div class="image-box"><img src="${q.image}" alt="수어 이미지"></div>
  <input id="answer" class="answer-input" placeholder="뜻을 입력해 주세요" autocomplete="off">`;
- const a=document.getElementById("answer"); a.focus(); a.onkeydown=e=>{if(e.key==="Enter") check();};
+ const a=document.getElementById("answer"); quiz.insertBefore(feedback,a);
+ a.focus(); a.onkeydown=e=>{if(e.key==="Enter") check();};
 }
 
 function renderWordToImage(q){
@@ -99,6 +100,7 @@ function renderWordToImage(q){
  const choices=[q,...opts.filter(x=>x!==q).slice(0,2)].sort(()=>Math.random()-.5);
  quiz.innerHTML=`<p class="question">「${q.answer}」에 해당하는 수어를 고르세요.</p>
  <div class="choices">${choices.map((x,i)=>`<button class="choice" data-answer="${x===q}"><img src="${x.image}" alt="선택지 ${i+1}"><div class="choice-num">${i+1}번</div></button>`).join("")}</div>`;
+ quiz.insertBefore(feedback, quiz.querySelector(".choices"));
  document.querySelectorAll(".choice").forEach(c=>c.onclick=()=>{
    if(answered)return;
    document.querySelectorAll(".choice").forEach(x=>x.style.borderColor="#e2e4ec");

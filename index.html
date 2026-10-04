@@ -98,8 +98,10 @@ function renderWordToImage(q){
  const opts=shuffled(questions);
  // 정답 1개 + 다른 문제 이미지 최대 2개
  const choices=[q,...opts.filter(x=>x!==q).slice(0,2)].sort(()=>Math.random()-.5);
+ const correctChoiceNumber=choices.findIndex(x=>x===q)+1;
  quiz.innerHTML=`<p class="question">「${q.answer}」에 해당하는 수어를 고르세요.</p>
- <div class="choices">${choices.map((x,i)=>`<button class="choice" data-answer="${x===q}"><img src="${x.image}" alt="선택지 ${i+1}"><div class="choice-num">${i+1}번</div></button>`).join("")}</div>`;
+ <div class="choices">${choices.map((x,i)=>`<button class="choice" data-answer="${x===q}" data-number="${i+1}"><img src="${x.image}" alt="선택지 ${i+1}"><div class="choice-num">${i+1}번</div></button>`).join("")}</div>`;
+ quiz.dataset.correctChoiceNumber=correctChoiceNumber;
  quiz.insertBefore(feedback, quiz.querySelector(".choices"));
  document.querySelectorAll(".choice").forEach(c=>c.onclick=()=>{
    if(answered)return;
@@ -122,7 +124,12 @@ function check(){
    correct=selected.dataset.answer==="true";
  }
  answered=true; if(correct){score++; showOk("정답이에요! 🎉");} else {
-   showBad(`아쉬워요. 정답은 <b>${q.answer}</b>이에요.`);
+   if(actualMode==="word-to-image") {
+     const correctChoiceNumber=quiz.dataset.correctChoiceNumber;
+     showBad(`아쉬워요. 정답은 <b>${correctChoiceNumber}번</b>이에요.`);
+   } else {
+     showBad(`아쉬워요. 정답은 <b>${q.answer}</b>이에요.`);
+   }
  }
  submit.classList.add("hidden"); next.classList.remove("hidden");
  if(current===questions.length-1) next.textContent="결과 보기";

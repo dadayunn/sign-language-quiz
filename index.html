@@ -15,7 +15,7 @@ h1{font-size:36px;letter-spacing:-1.5px;margin:10px 0 7px}.sub{margin:0;color:#7
 .lesson-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.lesson-btn{min-height:92px;border:2px solid #e1e4ec;background:#fafbfe;border-radius:18px;padding:14px 10px;font-family:inherit;cursor:pointer;color:#202331;transition:.15s}.lesson-btn:hover{border-color:#5861df;transform:translateY(-1px)}
 .lesson-btn .lesson-no{display:block;font-size:21px;font-weight:900;margin-bottom:5px}.lesson-btn .lesson-name{display:block;font-size:14px;font-weight:700;color:#777e91}.lesson-btn.random-lesson{background:#eef0ff;border-color:#d9ddff}.lesson-btn.random-lesson .lesson-no{color:#5861df}
 .quiz-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.back-btn{border:0;background:#f1f2f6;border-radius:11px;padding:9px 11px;font-family:inherit;font-size:13px;font-weight:800;color:#565d70;cursor:pointer}.current-lesson{font-size:14px;font-weight:900;color:#5861df;text-align:right}
-.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}.type-btn{height:58px;border:1px solid #dfe2ec;background:#fafbfe;border-radius:15px;font-family:inherit;font-size:15px;font-weight:700;color:#565d70;cursor:pointer}.type-btn.active{background:#5861df;color:#fff;border-color:#5861df}
+.setup-panel{text-align:center;padding:4px 0 2px}.setup-panel h2{font-size:23px;margin:4px 0 7px}.setup-panel .setup-desc{margin:0 0 18px;color:#777e91;font-size:14px}.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.type-btn{height:62px;border:2px solid #dfe2ec;background:#fafbfe;border-radius:15px;font-family:inherit;font-size:15px;font-weight:800;color:#565d70;cursor:pointer}.type-btn.active{background:#5861df;color:#fff;border-color:#5861df}.count-panel{margin-top:10px;padding-top:18px;border-top:1px solid #eceef4}.count-panel h3{font-size:19px;margin:0 0 6px}.count-hint{font-size:13px;color:#777e91;margin:0 0 13px}.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.count-btn{height:56px;border:2px solid #dfe2ec;background:#fff;border-radius:14px;font-family:inherit;font-size:16px;font-weight:900;color:#34394a;cursor:pointer}.count-btn:hover{border-color:#5861df;background:#f7f8ff}.play-panel{padding-top:2px}
 .info{display:flex;justify-content:space-between;font-size:14px;font-weight:800;margin-bottom:10px}.progress-bg{height:7px;background:#eceef4;border-radius:99px;overflow:hidden;margin-bottom:18px}.progress{height:100%;background:#5861df;border-radius:99px;transition:.25s}
 .question{font-size:21px;text-align:center;font-weight:900;margin:4px 0 16px}.image-box{aspect-ratio:16/10;border-radius:17px;background:#f0f1f5;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:18px}.image-box img{width:100%;height:100%;object-fit:contain}
 .answer-input{width:100%;height:54px;border:2px solid #e1e4ec;border-radius:14px;padding:0 15px;font-family:inherit;font-size:18px!important;font-weight:500;line-height:1.2;outline:0;-webkit-appearance:none;appearance:none;-webkit-text-size-adjust:100%}.answer-input:focus{border-color:#5861df;box-shadow:0 0 0 4px #eef0ff}
@@ -24,7 +24,7 @@ h1{font-size:36px;letter-spacing:-1.5px;margin:10px 0 7px}.sub{margin:0;color:#7
 .feedback{display:none;margin:0 0 12px;border-radius:14px;padding:16px;line-height:1.5;font-size:18px;font-weight:800;text-align:center}.feedback.show{display:block}.ok{background:#eaf8f0;color:#21885a}.bad{background:#fff0f2;color:#c94758}
 .empty-state{text-align:center;padding:32px 8px}.empty-state h3{font-size:22px;margin:0 0 8px}.empty-state p{color:#777e91;line-height:1.6;margin:0 0 18px}.empty-state button{width:100%}
 .result{text-align:center;padding:25px 4px}.score{font-size:54px;font-weight:900;color:#5861df;margin:10px 0}.result h2{margin:0;font-size:25px}.result p{color:#777e91;line-height:1.6}.result-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px}
-@media(max-width:560px){h1{font-size:30px}.card{padding:14px;border-radius:20px}.lesson-grid{grid-template-columns:1fr 1fr;gap:9px}.lesson-btn{min-height:86px;padding:12px 8px}.lesson-btn .lesson-no{font-size:19px}.lesson-btn .lesson-name{font-size:13px}.type-btn{font-size:13px}.choices{gap:10px}.choice img{height:210px}button.main{font-size:18px!important}.quiz-top{align-items:flex-start}.current-lesson{font-size:13px}}
+@media(max-width:560px){h1{font-size:30px}.card{padding:14px;border-radius:20px}.lesson-grid{grid-template-columns:1fr 1fr;gap:9px}.lesson-btn{min-height:86px;padding:12px 8px}.lesson-btn .lesson-no{font-size:19px}.lesson-btn .lesson-name{font-size:13px}.type-grid{grid-template-columns:1fr;gap:9px}.type-btn{font-size:16px;height:58px}.count-grid{grid-template-columns:1fr 1fr}.count-btn{font-size:17px}.choices{gap:10px}.choice img{height:210px}button.main{font-size:18px!important}.quiz-top{align-items:flex-start}.current-lesson{font-size:13px}}
 </style>
 </head>
 <body>
@@ -50,18 +50,36 @@ h1{font-size:36px;letter-spacing:-1.5px;margin:10px 0 7px}.sub{margin:0;color:#7
     <button class="back-btn" id="backLesson">← 과 다시 선택</button>
     <div class="current-lesson" id="currentLesson"></div>
   </div>
-  <div class="type-grid">
-    <button class="type-btn active" data-mode="image-to-word">1. 이미지 → 뜻</button>
-    <button class="type-btn" data-mode="word-to-image">2. 뜻 → 이미지</button>
-    <button class="type-btn" data-mode="random">3. 랜덤</button>
+
+  <div id="setupPanel" class="setup-panel">
+    <h2>문제 유형을 선택해 주세요</h2>
+    <p class="setup-desc">원하는 퀴즈 방식을 먼저 선택해 주세요.</p>
+    <div class="type-grid">
+      <button class="type-btn" data-mode="image-to-word">1. 이미지 → 뜻</button>
+      <button class="type-btn" data-mode="word-to-image">2. 뜻 → 이미지</button>
+      <button class="type-btn" data-mode="random">3. 랜덤</button>
+    </div>
+    <div id="countPanel" class="count-panel hidden">
+      <h3>몇 문제를 풀까요?</h3>
+      <p class="count-hint" id="countHint"></p>
+      <div class="count-grid">
+        <button class="count-btn" data-count="10">10문제</button>
+        <button class="count-btn" data-count="20">20문제</button>
+        <button class="count-btn" data-count="30">30문제</button>
+        <button class="count-btn" data-count="all">전체</button>
+      </div>
+    </div>
   </div>
-  <div class="info"><span id="num"></span><span id="score"></span></div>
-  <div class="progress-bg"><div class="progress" id="progress"></div></div>
-  <div id="quiz"></div>
-  <div id="feedback" class="feedback"></div>
-  <div class="actions">
-    <button class="main" id="submit">정답 확인</button>
-    <button class="main next hidden" id="next">다음 문제</button>
+
+  <div id="playPanel" class="play-panel hidden">
+    <div class="info"><span id="num"></span><span id="score"></span></div>
+    <div class="progress-bg"><div class="progress" id="progress"></div></div>
+    <div id="quiz"></div>
+    <div id="feedback" class="feedback"></div>
+    <div class="actions">
+      <button class="main" id="submit">정답 확인</button>
+      <button class="main next hidden" id="next">다음 문제</button>
+    </div>
   </div>
 </div>
 </div>
@@ -71,10 +89,15 @@ const allQuestions=[{"image":"data:image/jpeg;base64,/9j/4QDKRXhpZgAATU0AKgAAAAg
 
 // 1과(인사) 65문제가 등록되어 있습니다. 새 문제를 추가할 때 lesson:"1", lesson:"2", lesson:"3" 중 하나를 넣으면 됩니다.
 let questions=[];
+let questionPool=[];
 let selectedLesson=null;
-let mode="image-to-word", current=0, score=0, answered=false, actualMode="";
+let mode=null, current=0, score=0, answered=false, actualMode="";
 const lessonScreen=document.getElementById("lessonScreen");
 const quizScreen=document.getElementById("quizScreen");
+const setupPanel=document.getElementById("setupPanel");
+const countPanel=document.getElementById("countPanel");
+const countHint=document.getElementById("countHint");
+const playPanel=document.getElementById("playPanel");
 const quiz=document.getElementById("quiz"), feedback=document.getElementById("feedback");
 const submit=document.getElementById("submit"), next=document.getElementById("next");
 const currentLessonEl=document.getElementById("currentLesson");
@@ -85,24 +108,34 @@ function shuffled(arr){return [...arr].sort(()=>Math.random()-.5);}
 
 function chooseLesson(lesson){
   selectedLesson=lesson;
-  questions=lesson==="all"?shuffled(allQuestions):shuffled(allQuestions.filter(q=>q.lesson===lesson));
+  questionPool=lesson==="all"?shuffled(allQuestions):shuffled(allQuestions.filter(q=>q.lesson===lesson));
+  questions=[];
   lessonScreen.classList.add("hidden");
   quizScreen.classList.remove("hidden");
   currentLessonEl.textContent=lessonNames[lesson];
-  document.querySelectorAll(".type-btn").forEach((x,i)=>x.classList.toggle("active",i===0));
-  mode="image-to-word"; current=0; score=0; answered=false;
-  if(!questions.length) return showEmptyLesson();
-  load();
+  setupPanel.classList.remove("hidden");
+  playPanel.classList.add("hidden");
+  countPanel.classList.add("hidden");
+  document.querySelectorAll(".type-btn").forEach(x=>x.classList.remove("active"));
+  mode=null; current=0; score=0; answered=false;
+  feedback.className="feedback"; feedback.innerHTML="";
+  if(!questionPool.length) return showEmptyLesson();
 }
 
 document.querySelectorAll(".lesson-btn").forEach(b=>b.onclick=()=>chooseLesson(b.dataset.lesson));
 document.getElementById("backLesson").onclick=()=>{
   quizScreen.classList.add("hidden");
   lessonScreen.classList.remove("hidden");
+  setupPanel.classList.remove("hidden");
+  playPanel.classList.add("hidden");
+  countPanel.classList.add("hidden");
+  document.querySelectorAll(".type-btn").forEach(x=>x.classList.remove("active"));
   feedback.className="feedback"; feedback.innerHTML="";
 };
 
 function showEmptyLesson(){
+  setupPanel.classList.add("hidden");
+  playPanel.classList.remove("hidden");
   document.getElementById("num").textContent="";
   document.getElementById("score").textContent="";
   document.getElementById("progress").style.width="0%";
@@ -110,13 +143,24 @@ function showEmptyLesson(){
   quiz.innerHTML=`<div class="empty-state"><h3>아직 문제가 없어요</h3><p>${lessonNames[selectedLesson]} 문제는 나중에 이미지를 추가하면 이곳에 자동으로 나타나도록 만들어뒀어요.</p><button class="main" onclick="document.getElementById('backLesson').click()">과 다시 선택</button></div>`;
 }
 
-function setupMode(m){
-  if(!questions.length)return;
-  mode=m; current=0; score=0; questions=shuffled(questions); load();
-}
 document.querySelectorAll(".type-btn").forEach(b=>b.onclick=()=>{
+  if(!questionPool.length)return;
   document.querySelectorAll(".type-btn").forEach(x=>x.classList.remove("active"));
-  b.classList.add("active"); setupMode(b.dataset.mode);
+  b.classList.add("active");
+  mode=b.dataset.mode;
+  countHint.textContent=`현재 ${questionPool.length}문제 중에서 선택할 수 있어요.`;
+  countPanel.classList.remove("hidden");
+});
+
+document.querySelectorAll(".count-btn").forEach(b=>b.onclick=()=>{
+  if(!mode || !questionPool.length)return;
+  const requested=b.dataset.count;
+  const count=requested==="all"?questionPool.length:Math.min(Number(requested),questionPool.length);
+  questions=shuffled(questionPool).slice(0,count);
+  current=0; score=0; answered=false;
+  setupPanel.classList.add("hidden");
+  playPanel.classList.remove("hidden");
+  load();
 });
 
 function load(){
@@ -139,7 +183,7 @@ function renderImageToWord(q){
 
 function renderWordToImage(q){
   submit.classList.add("hidden");
-  // 정답 1개 + 오답 3개, 총 4개의 이미지를 보여줍니다.
+  // 정답 1개 + 오답 2개, 총 3개의 이미지를 세로로 보여줍니다.
   // 가능한 경우 같은 과에서 오답을 고르고, 부족하면 전체 문제에서 보충합니다.
   const qAnswerKeys=new Set(q.answers.map(norm));
   const validDistractor=x=>x!==q && !x.answers.some(a=>qAnswerKeys.has(norm(a)));

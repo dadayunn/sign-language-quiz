@@ -254,12 +254,8 @@ function check(){
     if(correctChoice) correctChoice.classList.add("correct");
   }
   if(correct){score++; showOk("정답이에요! 🎉");} else {
-    if(actualMode==="word-to-image"){
-      const correctChoiceNumber=quiz.dataset.correctChoiceNumber;
-      showBad(`아쉬워요. 정답은 <b>${correctChoiceNumber}번</b>이에요.`);
-    } else {
-      showBad(`아쉬워요. 정답은 <b>${q.answer}</b>이에요.`);
-    }
+    // 오답일 때는 문장 없이 대표 정답만 보여줍니다.
+    showBad(`<b>${q.answer}</b>`);
   }
   submit.classList.add("hidden"); next.classList.remove("hidden");
   if(current===questions.length-1) next.textContent="결과 보기";

@@ -108,6 +108,11 @@ const lessonNames={"1":"1과 · 인사","2":"2과 · 가족","3":"3과 · 요일
 function norm(s){return s.trim().replace(/[\s,，、]+/g,"").toLowerCase();}
 function shuffled(arr){return [...arr].sort(()=>Math.random()-.5);}
 
+function scrollPageTop(){
+  // 뜻 → 이미지 문제에서는 선택 후/새 문제 표시 후 화면을 맨 위로 이동합니다.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:"auto"})));
+}
+
 function chooseLesson(lesson){
   selectedLesson=lesson;
   questionPool=lesson==="all"?shuffled(allQuestions):shuffled(allQuestions.filter(q=>q.lesson===lesson));
@@ -233,7 +238,9 @@ function renderWordToImage(q){
     document.querySelectorAll(".choice").forEach(x=>{x.classList.remove("selected");delete x.dataset.selected;});
     c.classList.add("selected"); c.dataset.selected="true";
     check();
+    scrollPageTop();
   });
+  scrollPageTop();
 }
 
 function check(){

@@ -176,9 +176,11 @@ function load(){
 }
 
 function renderImageToWord(q){
-  quiz.innerHTML=`<p class="question">이 수어는 무슨 뜻일까요?</p><div class="image-box"><img src="${q.image}" alt="수어 이미지"></div><input id="answer" class="answer-input" placeholder="뜻을 입력해 주세요" autocomplete="off">`;
+  quiz.innerHTML=`<p class="question">이 수어는 무슨 뜻일까요?</p><div class="image-box"><img src="${q.image}" alt="수어 이미지"></div><input id="answer" class="answer-input" placeholder="뜻을 입력해 주세요" autocomplete="off" inputmode="text">`;
   const a=document.getElementById("answer"); quiz.insertBefore(feedback,a);
-  a.focus();
+  // 문제를 띄우는 순간 입력칸에 포커스를 줍니다.
+  // 모바일에서는 문제 시작/다음 문제 버튼 클릭 직후 실행되므로 키보드가 함께 열립니다.
+  try{a.focus({preventScroll:true});}catch(_){a.focus();}
   a.onkeydown=e=>{
     if(e.key!=="Enter") return;
     e.preventDefault();
@@ -216,6 +218,8 @@ function check(){
   if(actualMode==="image-to-word"){
     const a=document.getElementById("answer"); if(!a||!a.value.trim()){showBad("답을 입력해 주세요.");return;}
     correct=q.answers.some(x=>norm(x)===norm(a.value));
+    // 정답 확인이 끝나면 포커스를 해제해 모바일 키보드를 자동으로 닫습니다.
+    a.blur();
   } else {
     const selected=document.querySelector('.choice[data-selected="true"]');
     if(!selected){showBad("수어 이미지를 하나 선택해 주세요.");return;}

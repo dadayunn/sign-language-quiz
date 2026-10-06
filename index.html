@@ -175,12 +175,34 @@ function load(){
   if(actualMode==="image-to-word") renderImageToWord(q); else renderWordToImage(q);
 }
 
+function focusAnswerInput(a){
+  if(!a) return;
+  // 모바일 Safari/Chrome에서 preventScroll 옵션을 쓰면 키보드는 열려도
+  // 입력칸이 화면 밖에 남을 수 있어 일반 focus()를 사용합니다.
+  a.focus();
+  try{a.setSelectionRange(a.value.length,a.value.length);}catch(_){}
+
+  // 키보드가 올라오며 화면 높이가 바뀐 뒤에도 입력칸이 확실히 보이도록 맞춥니다.
+  const bringIntoView=()=>{
+    if(document.activeElement===a){
+      try{a.scrollIntoView({block:"center",inline:"nearest",behavior:"smooth"});}
+      catch(_){a.scrollIntoView();}
+    }
+  };
+  requestAnimationFrame(bringIntoView);
+  setTimeout(bringIntoView,180);
+  setTimeout(bringIntoView,420);
+  if(window.visualViewport){
+    window.visualViewport.addEventListener("resize",bringIntoView,{once:true});
+  }
+}
+
 function renderImageToWord(q){
-  quiz.innerHTML=`<p class="question">이 수어는 무슨 뜻일까요?</p><div class="image-box"><img src="${q.image}" alt="수어 이미지"></div><input id="answer" class="answer-input" placeholder="뜻을 입력해 주세요" autocomplete="off" inputmode="text">`;
+  quiz.innerHTML=`<p class="question">이 수어는 무슨 뜻일까요?</p><div class="image-box"><img src="${q.image}" alt="수어 이미지"></div><input id="answer" class="answer-input" placeholder="뜻을 입력해 주세요" autocomplete="off" inputmode="text" autofocus>`;
   const a=document.getElementById("answer"); quiz.insertBefore(feedback,a);
-  // 문제를 띄우는 순간 입력칸에 포커스를 줍니다.
-  // 모바일에서는 문제 시작/다음 문제 버튼 클릭 직후 실행되므로 키보드가 함께 열립니다.
-  try{a.focus({preventScroll:true});}catch(_){a.focus();}
+  // 문제 시작/다음 문제 버튼 클릭 직후 입력칸에 실제 포커스를 주고,
+  // 키보드가 열린 뒤 입력칸이 화면 중앙에 보이도록 이동합니다.
+  focusAnswerInput(a);
   a.onkeydown=e=>{
     if(e.key!=="Enter") return;
     e.preventDefault();

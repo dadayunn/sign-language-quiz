@@ -178,7 +178,14 @@ function load(){
 function renderImageToWord(q){
   quiz.innerHTML=`<p class="question">이 수어는 무슨 뜻일까요?</p><div class="image-box"><img src="${q.image}" alt="수어 이미지"></div><input id="answer" class="answer-input" placeholder="뜻을 입력해 주세요" autocomplete="off">`;
   const a=document.getElementById("answer"); quiz.insertBefore(feedback,a);
-  a.focus(); a.onkeydown=e=>{if(e.key==="Enter") check();};
+  a.focus();
+  a.onkeydown=e=>{
+    if(e.key!=="Enter") return;
+    e.preventDefault();
+    e.stopPropagation();
+    if(answered && !next.classList.contains("hidden")) next.click();
+    else check();
+  };
 }
 
 function renderWordToImage(q){
@@ -237,6 +244,16 @@ function showOk(t){feedback.className="feedback show ok";feedback.innerHTML=t;}
 function showBad(t){feedback.className="feedback show bad";feedback.innerHTML=t;}
 submit.onclick=check;
 next.onclick=()=>{current++;load();};
+
+// 정답 확인 후 Enter 키로 다음 문제(마지막 문제에서는 결과 보기)로 이동
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter" || e.repeat) return;
+  if(document.activeElement && document.activeElement.id==="answer") return;
+  if(answered && !next.classList.contains("hidden")){
+    e.preventDefault();
+    next.click();
+  }
+});
 
 function restartCurrentLesson(){
   questions=selectedLesson==="all"?shuffled(allQuestions):shuffled(allQuestions.filter(q=>q.lesson===selectedLesson));
